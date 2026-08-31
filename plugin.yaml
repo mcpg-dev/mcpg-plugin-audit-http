@@ -1,0 +1,22 @@
+schema: mcpg.dev/plugin/v1
+id: dev.mcpg.audit.http
+name: HTTP Collector Audit Sink
+license: BUSL-1.1
+description: |
+  An audit_sink that ships audit events to an HTTP collector as
+  bearer-authenticated JSON batches. A single background writer
+  group-commits: each emit hands its event to the writer and blocks
+  until the batch that carries it is POSTed and the collector answers
+  2xx — so `audit.required` + `fail_closed` keep their meaning (an
+  uncommitted batch fails the calls that produced it), while under
+  load many events share one round trip. The request body is a JSON
+  array of audit records serialized verbatim (event_id and
+  prev_event_hash included, so a downstream store can verify the
+  per-node hash chain); the receipt carries the SHA-256 over each
+  event's canonical bytes. Any 2xx commits; 429 and 5xx retry a
+  bounded number of times with backoff; other 4xx fail immediately.
+class: audit_sink
+runtime: native-cdylib-v1
+protocol_version: "1.0"
+required_capabilities:
+  - network_outbound

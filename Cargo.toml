@@ -1,0 +1,39 @@
+[package]
+name = "mcpg-plugin-audit-http"
+version = "0.1.0-alpha.1"
+edition = "2024"
+license = "BUSL-1.1"
+description = "HTTP collector audit sink: batches audit events into bearer-authenticated JSON POSTs"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["cdylib-export"]
+# Default OFF in the workspace rlib graph would collide with the other
+# plugin rlibs on `mcpg_plugin_register`; the cdylib build opts in.
+cdylib-export = []
+# Declared so the SDK's audit_sink `build_static` accessor (gated
+# `#[cfg(feature = "static-firstparty")]`) does not trigger
+# `unexpected_cfgs` in consumer compilation. Empty: this plugin is
+# consumed as a cdylib, not via the static-firstparty fast path.
+static-firstparty = []
+
+[dependencies]
+mcpg-plugin-protocol = { git = "https://github.com/mcpg-dev/mcpg-plugin-protocol", tag = "v0.1.0-beta.18", version = "=0.1.0-beta.18" }
+mcpg-plugin-sdk = { git = "https://github.com/mcpg-dev/mcpg-plugin-sdk", tag = "v0.1.0-beta.18", version = "=0.1.0-beta.18" }
+
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+hex = "0.4"
+metrics = "0.24"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+thiserror = "2"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync"] }
+tracing = "0.1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt", "rt-multi-thread", "net", "io-util", "time", "sync"] }
+wiremock = "0.6"
