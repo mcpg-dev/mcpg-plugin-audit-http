@@ -1,7 +1,7 @@
 schema: mcpg.dev/plugin/v1
 id: dev.mcpg.audit.http
 name: HTTP Collector Audit Sink
-license: BUSL-1.1
+license: Apache-2.0
 description: |
   An audit_sink that ships audit events to an HTTP collector as
   bearer-authenticated JSON batches. A single background writer

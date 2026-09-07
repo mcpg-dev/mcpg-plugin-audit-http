@@ -1,6 +1,6 @@
 [package]
 name = "mcpg-plugin-audit-http"
-version = "0.1.0-alpha.4"
+version = "0.1.0-alpha.5"
 edition = "2024"
 license = "BUSL-1.1"
 description = "HTTP collector audit sink: batches audit events into bearer-authenticated JSON POSTs"
@@ -20,8 +20,8 @@ cdylib-export = []
 static-firstparty = []
 
 [dependencies]
-mcpg-plugin-protocol = { git = "https://github.com/mcpg-dev/mcpg-plugin-protocol", tag = "v0.1.0-beta.21", version = "=0.1.0-beta.21" }
-mcpg-plugin-sdk = { git = "https://github.com/mcpg-dev/mcpg-plugin-sdk", tag = "v0.1.0-beta.21", version = "=0.1.0-beta.21" }
+mcpg-plugin-protocol = { git = "https://github.com/mcpg-dev/mcpg-plugin-protocol", tag = "v0.1.0-beta.22", version = "=0.1.0-beta.22" }
+mcpg-plugin-sdk = { git = "https://github.com/mcpg-dev/mcpg-plugin-sdk", tag = "v0.1.0-beta.22", version = "=0.1.0-beta.22" }
 
 chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
 hex = "0.4"
