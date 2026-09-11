@@ -49,7 +49,7 @@ immediately (no artificial linger).
 plugins:
   - id: dev.mcpg.audit.http
     source:
-      oci: ghcr.io/mcpg-dev/mcpg-plugin-audit-http
+      oci: ghcr.io/mcpg-dev/plugins/audit-http
     class: audit_sink
     granted_capabilities:
       - network_outbound
