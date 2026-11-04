@@ -1,6 +1,6 @@
 [package]
 name = "mcpg-plugin-audit-http"
-version = "0.1.0-rc.5"
+version = "0.1.0"
 edition = "2024"
 license = "Apache-2.0"
 description = "HTTP collector audit sink: batches audit events into bearer-authenticated JSON POSTs"
