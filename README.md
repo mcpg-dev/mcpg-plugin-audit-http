@@ -11,7 +11,7 @@ stores that speak plain HTTP.
 the batch carrying the event — the audit-sink fan-out contract (the
 gateway awaits every sink's Ok before completing the request that
 produced the event, unless the operator opts into fail-open). So
-`audit.required` + `fail_closed` keep their meaning: an uncommitted
+`governance.audit.required` + `fail_closed` keep their meaning: an uncommitted
 batch fails the calls that produced it. There is no fire-and-forget
 path.
 
@@ -59,7 +59,7 @@ plugins:
 ```
 
 Worst-case `emit` latency is `(max_retries + 1) * timeout_ms` plus
-backoff — size `audit.required` timeouts accordingly.
+backoff — size `governance.audit.required` timeouts accordingly.
 
 ## License
 
