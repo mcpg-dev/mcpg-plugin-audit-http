@@ -36,6 +36,11 @@ immediately (no artificial linger).
 
 ## Configuration
 
+Set these keys in one place: the `plugins[]` entry's `config:`, or the
+`governance.audit.sinks[]` entry with `kind: dev.mcpg.audit.http`. The
+gateway hands the sink entry's `config:` to the plugin; setting a different
+`config:` in both places stops the boot.
+
 | Field | Type | Default | Description |
 |---|---|---|---|
 | `url` | string | *(required)* | Collector endpoint (`http(s)://`). |
